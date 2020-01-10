@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <button>我是刘德华</button>
+    <script>
+        class Father {
+            say() {
+                return 'I am father'
+            }
+        }
+        class Son extends Father {
+            //继承类中的属性和方法查找原则：就近原则，现在当前类中找，如果没有就去父类中查找，一层层向上查找
+            say() {
+                //可以通过super方法直接调用父类中的方法
+                return super.say() + " 's son";
+            }
+        }
+
+        const son = new Son()
+        console.log(son.say());
+
+        class Mother {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                //可以在构造器中直接调用当前类的方法，这样创建该类的实例的时候构造器执行的同时就会执行该方法
+                this.sum()
+                this.btn = document.querySelector('button')
+                    //注意song后面不要加(),才能实现点击按钮才调用该方法；否则会在该构造器执行时，即页面加载时立马调用
+                this.btn.onclick = this.song
+            }
+            sum() {
+                console.log(this.x + this.y);
+            }
+            song() {
+                console.log('如果你是我的传说');
+            }
+        }
+        class Daughter extends Mother {
+            constructor(x, y) {
+                // 这里使用super()的主要思想就是一个类的构造器和方法是绑定到一起的，即方法只能使用当前类的构造器中的数据
+                //这里必须使用super方法将子类传进来的值给父类，才能调用父类的方法,因为父类的方法使用的还是父类的属性值；
+                //super必须在this前面使用
+                super(x, y);
+                this.x = x;
+                this.y = y;
+                this.subtract()
+            }
+            subtract() {
+                console.log(this.x - this.y);
+            }
+        }
+
+        const lily = new Daughter(8, 9)
+
+        class Baoji extends Mother {
+            constructor(x, y) {
+                super(x, y)
+                    //方法遵循就近原则
+                this.locate()
+            }
+            locate() {
+                console.log('where are you now')
+            }
+        }
+        var newlocate = new Baoji()
+    </script>
+</body>
+
+</html>

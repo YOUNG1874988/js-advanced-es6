@@ -1,29 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            padding: 20px 0;
+        }
+        
+        h4 {
+            text-align: center;
+        }
+        
+        .tabsbox {
+            border: 1px solid orange;
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            left: 50%;
+            margin-left: -200px;
+        }
+        
+        .navbar {
+            border: 1px solid #ccc;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        
+        .navbar ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .navbar ul li {
+            list-style: none;
+            /* float: left; */
+            display: inline-block;
+            width: 65px;
+            height: 40px;
+            /* background-color: orange; */
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #ccc;
+            border-left: none;
+            border-top: none;
+            border-bottom: none;
+        }
+        
+        .tabadd {
+            position: absolute;
+            right: 10px;
+            top: 12px;
+        }
+        
+        .tabadd span {
+            font-size: 12px;
+            /* color: #ccc; */
+            border: 1px solid #ccc;
+            width: 15px;
+            text-align: center;
+            display: block;
+            line-height: 15px;
+            text-indent: 1px;
+            color: rgba(1, 1, 1, .7)
+        }
+    </style>
 </head>
+
 <body>
-<main>
+    <main>
 
-    <h4>JS面向对象 动态添加标签页</h4>
-    <div class="tabsbox" id="tab">
-<!--    tab标签-->
-        <nav class="firstnav">
-            <ul>
-                <li class="liactive"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
-                <li><span>测试2</span><span class="iconfont icon-guanbi"></span></li>
-                <li><span>测试3</span><span class="iconfont icon-guanbi"></span></li>
-            </ul>
-            <div class="tabadd">
-                <span>+</span>
+        <h4>JS面向对象 动态添加标签页</h4>
+        <div class="tabsbox" id="tab">
+            <!--    tab标签-->
+            <nav class="navbar">
+                <ul>
+                    <li class="liactive"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
+                    <li style="margin-left: -4px;"><span>测试2</span><span class="iconfont icon-guanbi"></span></li>
+                    <li style="margin-left: -4px;"><span>测试3</span><span class="iconfont icon-guanbi"></span></li>
+                </ul>
+                <div class="tabadd">
+                    <span>+</span>
+                </div>
+            </nav>
+            <div class="content">
+
             </div>
-        </nav>
-    </div>
-</main>
-<scrip src="tab.js">
+        </div>
+    </main>
+    <scrip src="./js/tab.js">
 
-</scrip>
+    </scrip>
 </body>
+
 </html>
