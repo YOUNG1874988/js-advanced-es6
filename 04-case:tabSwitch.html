@@ -43,10 +43,14 @@
             /* background-color: orange; */
             text-align: center;
             line-height: 40px;
-            border: 1px solid #ccc;
-            border-left: none;
-            border-top: none;
-            border-bottom: none;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            /* 让所有的小li和tabbar的下边框重合 */
+            margin-bottom: -1px;
+        }
+        
+        .tabsbox .navbar .li-active {
+            border-bottom: 1px solid white;
         }
         
         .tabadd {
@@ -66,18 +70,23 @@
             text-indent: 1px;
             color: rgba(1, 1, 1, .7)
         }
+        /* 默认显示内容1 */
+        
+        .content section {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <main>
+    <div>
 
         <h4>JS面向对象 动态添加标签页</h4>
         <div class="tabsbox" id="tab">
             <!--    tab标签-->
             <nav class="navbar">
                 <ul>
-                    <li class="liactive"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
+                    <li class="li-active"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
                     <li style="margin-left: -4px;"><span>测试2</span><span class="iconfont icon-guanbi"></span></li>
                     <li style="margin-left: -4px;"><span>测试3</span><span class="iconfont icon-guanbi"></span></li>
                 </ul>
@@ -86,13 +95,15 @@
                 </div>
             </nav>
             <div class="content">
-
+                <section>测试1内容</section>
+                <section>测试2内容</section>
+                <section>测试3内容</section>
             </div>
         </div>
-    </main>
-    <scrip src="./js/tab.js">
+    </div>
 
-    </scrip>
+    <script src="./js/tab.js">
+    </script>
 </body>
 
 </html>
