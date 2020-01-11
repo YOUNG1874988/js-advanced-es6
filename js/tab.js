@@ -65,7 +65,7 @@ window.addEventListener('load', function() {
                 // that.ul.appendChild(newli)
                 // 创建新的tab前清除所有其他tab的当前样式
                 that.clear()
-                var li = '<li class="li-active" ><span>new tab</span><span class="iconfont icon-guanbi"></span></li>'
+                var li = '<li class="li-active" ><span>new tab</span><span class="iconfont icon-guanbi">×</span></li>'
 
                 that.ul.insertAdjacentHTML('beforeend', li)
 
