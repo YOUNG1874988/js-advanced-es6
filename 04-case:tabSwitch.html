@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="./js/tab.js">
+    </script>
     <style>
         body {
             padding: 20px 0;
@@ -32,9 +34,14 @@
         .navbar ul {
             margin: 0;
             padding: 0;
+            /* 为了解决给li设置inline-block后的间隔问题，给ul设置font-size为0
+            再给li设置font-size，可以消除间隔 */
+            font-size: 0;
         }
         
         .navbar ul li {
+            position: relative;
+            font-size: 14px;
             list-style: none;
             /* float: left; */
             display: inline-block;
@@ -45,8 +52,25 @@
             line-height: 40px;
             border-right: 1px solid #ccc;
             border-bottom: 1px solid #ccc;
-            /* 让所有的小li和tabbar的下边框重合 */
             margin-bottom: -1px;
+        }
+        
+        .iconfont {
+            /* overflow: hidden; */
+            width: 8px;
+            height: 8px;
+            line-height: 8px;
+            display: inline-block;
+            font-size: 10px;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            background-color: orange;
+            border-bottom-left-radius: 100%;
+            padding: 0 0 3px 3px;
+            color: white;
+            background-color: black;
         }
         
         .tabsbox .navbar .li-active {
@@ -73,7 +97,7 @@
         /* 默认显示内容1 */
         
         .content section {
-            display: none;
+            /* display: none; */
         }
     </style>
 </head>
@@ -86,24 +110,23 @@
             <!--    tab标签-->
             <nav class="navbar">
                 <ul>
-                    <li class="li-active"><span>测试1</span><span class="iconfont icon-guanbi"></span></li>
-                    <li style="margin-left: -4px;"><span>测试2</span><span class="iconfont icon-guanbi"></span></li>
-                    <li style="margin-left: -4px;"><span>测试3</span><span class="iconfont icon-guanbi"></span></li>
+                    <li class="li-active"><span>测试1</span><span class="iconfont icon-guanbi">×</span></li>
+                    <li><span>测试2</span><span class="iconfont icon-guanbi">×</span></li>
+                    <li><span>测试3</span><span class="iconfont icon-guanbi">×</span></li>
                 </ul>
                 <div class="tabadd">
                     <span>+</span>
                 </div>
             </nav>
             <div class="content">
-                <section>测试1内容</section>
-                <section>测试2内容</section>
-                <section>测试3内容</section>
+                <section style="display: block;">测试1内容</section>
+                <section style="display: none;">测试2内容</section>
+                <section style="display: none;">测试3内容</section>
             </div>
         </div>
     </div>
 
-    <script src="./js/tab.js">
-    </script>
+
 </body>
 
 </html>
