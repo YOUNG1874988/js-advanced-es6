@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Star(uname, age) {
+            this.uname = uname;
+            this.age = age
+        }
+        var that
+        Star.prototype.sing = function() {
+            that = this
+            console.log('I can sing a song!')
+        }
+        var ldh = new Star('liudehua', 99);
+        ldh.sing()
+        console.log(that === ldh)
+            // 不管是原型对象中的this，还是构造函数中的this，都指向函数的调用者，即实例对象，如本文中的ldh
+    </script>
+
+
+
+
+
+</body>
+
+</html>

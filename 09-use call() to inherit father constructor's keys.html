@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Father(uname, age) {
+            this.uname = uname
+            this.age = age
+        }
+
+        function Son(uname, age) {
+            //将父方法中的this指向改为指向子方法
+            Father.call(this, uname, age)
+        }
+
+        var son = new Son('liudehua', 99)
+        console.log(son)
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>

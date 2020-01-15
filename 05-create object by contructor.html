@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 利用构造函数创建对象
+        function Star(uname, age) {
+            this.uname = uname
+            this.age = age
+
+        }
+
+
+        Star.prototype.sing = function() {
+            console.log('I can sing a song!!!')
+
+        }
+        var ldh = new Star('刘德华', 44)
+        console.log(Star)
+        console.log(ldh)
+        console.log('yangjun')
+
+        Star.prototype = {
+            // 这种使用多个对象修改原型的方式必须手动指回他的构造函数是哪一个
+            constructor: Star,
+            sing: function() {
+                console.log('sing a song')
+            },
+            movie: function() {
+                console.log('play a movie')
+            }
+        }
+        ldh.sex = 'female'
+        Star.prototype.sex = 'male'
+
+        console.log(ldh.sex)
+
+        console.log('I have a dream!!!!!')
+        console.log(ldh)
+        console.log(Star.prototype)
+            // 存在原型链，第4层为null，第3层为Object
+        console.log(Star.prototype.__proto__.__proto__)
+        console.log('the second dream!')
+
+
+
+
+
+
+
+
+
+
+        console.log(ldh.__proto__)
+
+        // 对象的原型和构造函数的原型是一样的
+        console.log(ldh.__proto__ == Star.prototype)
+        console.log(ldh.__proto__)
+            // 实例成员，，在构造函数内部通过this添加的成员；只能通过实例化对象去访问
+        console.log(ldh.uname)
+        ldh.sing()
+        var zxy = new Star('zhangxueyou', 99)
+        console.log(zxy)
+            // 静态成员，在构造函数本身上添加的成员;只能由构造函数本身去访问
+        Star.sex = 'gender'
+        console.log(Star.sex)
+    </script>
+</body>
+
+</html>
