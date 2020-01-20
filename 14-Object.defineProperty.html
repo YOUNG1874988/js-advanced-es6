@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+                id: 1,
+                pname: 'xiaomi',
+                price: 39999
+            }
+            // 这里的键必须要用引号包裹起来
+            // 
+        Object.defineProperty(obj, 'sales', {
+            value: 2000
+        })
+        Object.defineProperty(obj, 'id', {
+            // 是否可重写，默认为false，即不可重写
+            writable: true,
+            // 是否可被枚举，默认为false；即是否可被列举
+            enumerable: false,
+            //是否可被删除，默认无法被删除；不允许修改第三个参数里面的这3个特性！！
+            configurable: false
+
+        })
+        delete obj.id
+        obj.id = 4
+        console.log(obj)
+        console.log(Object.keys(obj))
+    </script>
+</body>
+
+</html>

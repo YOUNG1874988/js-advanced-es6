@@ -22,6 +22,12 @@
 
         var son = new Son('liudehua', 99)
         console.log(son)
+            // 让子构造函数的原型对象等于父构造函数的实例，就继承了父原型对象的方法
+        Son.prototype = new Father
+            //然后 把constructor重新指回Son
+        Son.prototype.constructor = Son
+        console.log(Son.prototype)
+        console.log(Son.prototype.constructor)
     </script>
 
 

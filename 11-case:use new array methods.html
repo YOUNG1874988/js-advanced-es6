@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        } */
+        /* 让该表格水平垂直居中 */
+        
+        table {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -150px;
+            margin-top: -50px;
+            border: 1px solid black;
+            /* 该值决定来单元格之间的空袭 */
+            border-spacing: 0;
+            width: 300px;
+            height: 100px;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            text-align: center;
+        }
+        /* tr {
+            border: 2px solid black;
+        } */
+        
+        .search {
+            position: absolute;
+            left: 30%;
+            top: 30%;
+        }
+        
+        input {
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 搜索筛选区域 -->
+    <div class="search">
+        按照价格查询: <input type="number" class="start"> - <input type="number" class="end">
+        <button class="search-price">搜索</button> 按照商品名称查询: <input type="text" class="product"> <button class="search-pro">查询</button>
+    </div>
+
+    <!-- 数据展示表格 -->
+    <table>
+
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>产品名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 要渲染的数据
+        //注意：对象中的键值对都要用:来连接
+        var data = [{
+            id: 1,
+            pname: '小米',
+            price: '2999'
+        }, {
+            id: 2,
+            pname: 'OPPO',
+            price: '5999'
+        }, {
+            id: 3,
+            pname: 'vivo',
+            price: '1999'
+        }, {
+            id: 4,
+            pname: 'chuizi',
+            price: '3988'
+        }];
+        // 2.获取数据放入的位置
+        var tbody = document.querySelector('tbody')
+            //声明渲染数据的函数
+        function setData(arraydata) {
+            // 将表格清空并将新的产品数据展示到表格中
+            if (arraydata === []) {
+                tbody.innerText = 'no such product'
+            } else {
+
+
+                tbody.innerHTML = ''
+
+                arraydata.forEach(function(value) {
+                    console.log(value)
+                        // 每迭代到一个产品对象，为其创建一个新的行，并放入tbody中
+                    var row = document.createElement('tr')
+                    tbody.appendChild(row)
+                        // 这种写法太过低级，不推荐使用
+                        // var thid = document.createElement('th')
+                        // thid.innerText = value.id
+                        // row.appendChild(thid)
+                    row.innerHTML = '<td>' + value.id + '</td><td>' + value.pname + '</td><td>' + value.price + '</td>'
+                })
+            }
+        }
+        // 执行渲染数据的函数
+        setData(data)
+
+        // 根据输入的筛选价格来选取符合条件的产品并展示到表格中，不符合条件的不展示
+        // 实现思路：点击价格搜索按钮后添加响应事件，在事件中获取2个价格输入表单中的值；
+        // 再把产品数组迭代找出在该价格区间内的产品；
+        // 把找出的产品渲染到页面表格中
+
+        //1. 获取价格搜索按钮和2个输入表单
+        var price_search = document.querySelector('.search-price')
+        var start_price = document.querySelector('.start')
+        var end_price = document.querySelector('.end')
+            // 2.给按钮添加点击事件
+        price_search.addEventListener('click', function() {
+            console.log(start_price.value)
+            console.log('hello')
+            var newdata = []
+                // 3.使用数组的过滤器得到符合条件的数组
+            newdata = data.filter(function(value) {
+                return value.price >= start_price.value * 1 && value.price <= end_price.value * 1
+            })
+            console.log(newdata)
+                //4. 将筛选出来的数据渲染到页面
+            setData(newdata)
+
+        })
+
+
+        // 搜索商品名称来展示对应商品
+        // 实现思路：
+        // 在输入框输入商品名称，点击查询按钮后迭代产品数组，看是否有名称相同的产品；
+        // 如果有就把展示区域清空，把该数据展示出来
+
+        // 1.获取产品查询输入框和查询按钮
+        var pro_name = document.querySelector('.product')
+        var search_btn = document.querySelector('.search-pro')
+
+        // 2.点击查询按钮响应事件
+        search_btn.addEventListener('click', function() {
+            // 点击时迭代产品数据数组，
+            var arr = []
+                // some方法遍历数组，找到符合条件值就停止查找；必须返回true
+            data.some(function(value) {
+                if (value.pname === pro_name.value) {
+                    console.log('wwwww')
+                    arr.push(value)
+                        // return 后面必须写true
+                        // 在some中遇到return true就会终止整个迭代
+                    return true;
+                }
+            })
+            setData(arr)
+                // var newdata = []
+                // newdata = data.filter(function(value) {
+                //     return value.pname === pro_name.value
+                // })
+                // if (newdata == []) {
+                //     console.log('hhhhh')
+                //     tbody.innerHTML = '<p> no such products here</>'
+
+            // } else {
+            //     tbody.innerHTML = ''
+            //     setData(newdata)
+
+            // }
+
+        })
+    </script>
+</body>
+
+</html>
