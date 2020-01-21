@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button></button>
+    <script>
+        // 一般情况下，函数中的this都指向函数的调用者
+        // 1.普通函数,this:window
+        function fn() {
+            console.log('人生的巅峰' + this)
+        }
+        // 普通函数的调用
+        fn();
+        // call方法：用fn去替换call()中的第一个参数，这里为空，所以相当于调用fn函数
+        fn.call()
+
+
+        // 2.把函数作为对象的方法来调用,this:对象o
+        var o = {
+                sayHi: function() {
+                    console.log('向天再借五百年')
+                }
+            }
+            // 注意这里方法后要加括号
+        o.sayHi()
+
+
+        // 3.构造函数,this:ldh 这个实例对象
+        function Star() {};
+        //  创建构造函数实例，从而创建函数
+        var ldh = new Star()
+            // 从原型链可以知道，构造函数中的原型对象中的this也指向ldh这个实例对象
+        Star.prototype.sing = function() {
+
+            }
+            // 4.绑定事件函数,this:指向函数的调用者
+        var btn = document.querySelector('button')
+        btn.onclick = function() {
+                console.log(this)
+                console.dir(this)
+            }
+            // 5.定时器函数,this:window
+        window.setInterval(() => {
+            console.log('还要去深圳' + this)
+        }, 500);
+
+        // 6.立即执行函数：先写2个括号，然后在第一个括号里面写一个函数,this:window
+        (function() {
+            console.log('什么时候去日本' + this)
+        })()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 3 ways to change this's directions:call(),apply(),bind() -->
+    <!-- 1.call -->
+    <!-- call() 的2 个功能：改变this指向和调用函数 -->
+    <script>
+        var o = {
+            name: 'andy'
+        }
+
+        function fn(a, b) {
+            console.log(this)
+            console.log(a + b)
+        }
+        // 1.用call可以改变该函数的this指向，这里第一个值为o，就将fn函数的this改为指向o对象；
+        //2. 用call也可以调用函数
+        fn.call(o, 3, 4)
+            // 3.call 的主要作用可以实现继承
+        function Father(uname, age, sex) {
+            this.uname = uname;
+            this.age = age;
+            this.sex = sex;
+        }
+
+        function Son(uname, age, sex) {
+            // 这里的this在Son中，故使用call把this指向改变为Son中
+            Father.call(this, uname, age, sex)
+        }
+        var son = new Son('ldh', 'male', '87')
+        console.log(son)
+
+
+        // apply同样可以调用函数并改变this指向，区别是它的参数必须是一个数组或者伪数组形式
+        fn.apply(o, ['hhhh', 'dddd'], ['dfdfd'])
+        var arr = [44, 333, 444, 3213, 56565, 44444]
+            // 用apply()和数学方法配合使用会很方便
+        var max = Math.max.apply(Math, arr)
+        console.log(max)
+        var min = Math.min.apply(Math, arr)
+        console.log(min)
+
+        // bind:不会调用原函数，只改变this指向，并产生一个新函数s
+        var obj = {
+            name: 'young'
+        }
+
+        function fn(a, b) {
+            console.log(this)
+            console.log(a + b)
+        }
+        var f = fn.bind(obj, 3, 4)
+        f()
+    </script>
+
+
+
+
+
+</body>
+
+</html>
