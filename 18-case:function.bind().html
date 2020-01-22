@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按下后禁用3秒钟</button>
+
+    <script>
+        // function:按下该按钮后禁用，过一段时间后解除禁用，用bind()解除定时器的this指向可实现该功能
+        var btn = document.querySelector('button')
+        btn.onclick = function() {
+            this.disabled = true
+            setTimeout(function() {
+                // 定时器的this指向window,故要解除禁用必须把this改为指向button
+                this.disabled = false
+                    // 这里的this指向button，就可以实现一定时间后改变this指向，从而把button解除禁用
+            }.bind(this), 3000);
+        }
+    </script>
+</body>
+
+</html>

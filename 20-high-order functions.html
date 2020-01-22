@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        // 回调函数：一种典型的高阶函数
+        function fn(a, b, callback) {
+            console.log(a + b)
+            callback && callback()
+        }
+
+        fn(3, 2, function() {
+            console.log('hello young!!!')
+        })
+    </script>
+</body>
+
+</html>

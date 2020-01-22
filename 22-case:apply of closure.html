@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>choudoufu</li>
+        <li>xianyu</li>
+        <li>zhuti</li>
+        <li>liulian</li>
+    </ul>
+    <script>
+        // 1.不使用闭包实现点击打印各自索引值
+        var lis = document.querySelectorAll('li')
+            //     // 这里的for循环是同步任务，但是onclick是异步任务；
+            //     // 当点击当时候i已经加到4了，所以点击任意一个小i都会打印4
+            // for (var i = 0; i < lis.length; i++) {
+            //     lis[i].inde = i
+            //     lis[i].onclick = function() {
+            //         console.log(this.inde)
+            //     }
+            // }
+
+
+
+        // 2.利用闭包的方式得到当前小li的索引值
+        for (var i = 0; i < lis.length; i++) {
+            // 采用立即执行函数并传值的方式
+            (function(i) {
+                lis[i].onclick = function() {
+                    console.log(i)
+                }
+                setTimeout(() => {
+                    console.log(lis[i].innerHTML)
+                }, 2000);
+            })(i)
+        }
+    </script>
+</body>
+
+</html>
